@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% block title %} About me {% endblock title %}
+{% load static %}
+{% load bootstrap5 %}
+{% block content %}
+
+
+        <!--================Home Banner Area =================-->
+        <section class="banner_area">
+            <div class="banner_inner d-flex align-items-center">
+            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+				<div class="container">
+					<div class="banner_content text-center">
+						<h2>About Me</h2>
+						<div class="page_link">
+							<a href="/">Home</a>
+							<a href="/about">About Me</a>
+						</div>
+						
+					</div>
+				</div>
+            </div>
+        </section>
+        <!--================End Home Banner Area =================-->
+        
+        <!--================Welcome Area =================-->
+        <section class="welcome_area p_120">
+        	<div class="container">
+        		<div class="row welcome_inner">
+        			<div class="col-lg-6">
+        				<div class="welcome_text">
+        					<h4>About Myself</h4>
+        					<p> {{ about.body }} </p>
+        					<div class="row">
+        						<div class="col-sm-4">
+        							<div class="wel_item">
+        								<i class="lnr lnr-database"></i>
+        								<h4>{{ about.amount }}</h4>
+        								<p>Total Donation</p>
+        							</div>
+        						</div>
+        						<div class="col-sm-4">
+        							<div class="wel_item">
+        								<i class="lnr lnr-book"></i>
+        								<h4>{{ about.project_count }}</h4>
+        								<p>Total Projects</p>
+        							</div>
+        						</div>
+        						<div class="col-sm-4">
+        							<div class="wel_item">
+        								<i class="lnr lnr-users"></i>
+        								<h4> {{ about.customer_count }} </h4>
+        								<p>Total Volunteers</p>
+        							</div>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
+        			<div class="col-lg-6">
+        				<div class="tools_expert">
+        					<h3>Tools Expertness</h3>
+        					<div class="skill_main">
+                                {% for tool in skill %}
+								<div class="skill_item">
+									<h4>{{ tool.name}} <span class="counter">{{ tool.percentage }}</span>%</h4>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" aria-valuenow="{{ tool.percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+                                {% endfor %}
+							</div>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </section>
+        <!--================End Welcome Area =================-->
+        
+        <!--================Feature Area =================-->
+        <section class="feature_area p_120">
+        	<div class="container">
+        		<div class="main_title">
+        			<h2>offerings to my clients</h2>
+        			<p>In this page you can see my offers, if you have any question you can contact to me thank you.</p>
+        		</div>
+        		<div class="feature_inner row">
+                    {% for offer in servis %}
+        			<div class="col-lg-4 col-md-6">
+        				<div class="feature_item">
+        					<i class="{{ offer.icon }}"></i>
+        					<h4>{{ offer.name }}</h4>
+        					<p>{{ offer.discription }}</p>
+        				</div>
+        			</div>
+                    {% endfor %}
+        		</div>
+        	</div>
+        </section>
+        <!--================End Feature Area =================-->
+        <script>
+			document.addEventListener('DOMContentLoaded', function() {
+				const toggleBtn = document.getElementById('mode-toggle-btn');
+				const body = document.body;
+			
+				// Add event listener to the toggle button
+				toggleBtn.addEventListener('click', function() {
+					// Toggle the 'dark-mode' class on the body
+					body.classList.toggle('dark-mode');
+			
+					// Store the user's preference in local storage
+					const isDarkMode = body.classList.contains('dark-mode');
+					localStorage.setItem('darkMode', isDarkMode);
+				});
+			
+				// Check if user has previously set dark mode preference
+				const isDarkMode = localStorage.getItem('darkMode') === 'true';
+				if (isDarkMode) {
+					body.classList.add('dark-mode');
+				}
+			});
+			</script>
+			
+			
+			<style>
+				/* Define styles for dark mode */
+				.dark-mode {
+					background-color: #1a1a1a; /* Dark background color */
+					color: #ffffff; /* Light text color */
+				}
+				
+				/* Target all text elements within dark mode */
+				.dark-mode * {
+					color: #ffffff; /* Light text color */
+				}
+				
+				/* Add more specific styles for dark mode as needed */
+				.dark-mode .banner_content h5 {
+					color: #ffffff; /* Example: Make heading text white in dark mode */
+				}
+				
+				/* Add more styles for other elements as needed */
+				</style>
+				
+			<style>
+				/* Toggle button styles */
+				#mode-toggle-btn {
+					position: absolute;
+					top: 50%;
+					left: 50%;
+					transform: translate(-50%, -50%);
+					padding: 8px 16px; /* Adjust padding to make it smaller */
+					border: none;
+					border-radius: 5px;
+					background-color: #4CAF50; /* Green background color */
+					color: #fff; /* White text color */
+					font-size: 14px; /* Adjust font size to make it smaller */
+					cursor: pointer;
+					transition: background-color 0.3s ease;
+				}
+				
+				/* Hover effect for the button */
+				#mode-toggle-btn:hover {
+					background-color: #45a049; /* Darker green on hover */
+				}
+				
+				/* Dark mode styles for the button */
+				.dark-mode #mode-toggle-btn {
+					background-color: #333; /* Dark background color */
+					color: #fff; /* Light text color */
+				}
+				
+				/* Dark mode hover effect */
+				.dark-mode #mode-toggle-btn:hover {
+					background-color: #555; /* Darker color on hover */
+				}
+				</style>
+				
+				<!-- Assuming you have a header element with class "header" -->
+				
+				
+
+{% endblock %}

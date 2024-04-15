@@ -1,0 +1,261 @@
+{% extends "base.html" %}
+{% load static %}
+{% load bootstrap5 %}
+
+{% block content %}
+
+        <!--================Home Banner Area =================-->
+        <section class="home_banner_area">
+            <div class="banner_inner">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6">
+							<div class="home_left_img">
+								<img style="max-width: 80%; max-height: fit-content; border-radius: 0 50% 50%  50%" src="{{ profile.image.url }}" alt="">
+							</div>
+						</div>
+						<div class="col-lg-6">
+							<div class="banner_content">
+								<h5>This is me</h5>
+								<h2>{{ profile.full_name }}</h2>
+                                <p>{{ profile.bio }}</p>
+                                <ul class="list d-flex pb-2">
+                                    {% for link in links %}
+                                    <li class="pr-4"><a target="_blank" href="{{ link.url }}"><i class="{{ link.icon }}"></i></a></li>
+                                    {% endfor %}
+        					    </ul>
+								<a class="banner_btn" href="{{ profile.link }}">Contact with me</a>
+							</div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </section>
+        <!--================End Home Banner Area =================-->
+        
+        <!--================Welcome Area =================-->
+        <section class="welcome_area p_120">
+        	<div class="container">
+        		<div class="row welcome_inner">
+        			<div class="col-lg-6">
+        				<div class="welcome_text">
+        					<h4>About Myself</h4>
+        					<p> {{ about.body }} </p>
+        					<div class="row">
+        						<div class="col-md-4">
+        							<div class="wel_item">
+        								<i class="lnr lnr-database"></i>
+        								<h4>{{ about.amount }}</h4>
+        								<p> Salary </p>
+        							</div>
+        						</div>
+        						<div class="col-md-4">
+        							<div class="wel_item">
+        								<i class="lnr lnr-book"></i>
+        								<h4>{{ about.project_count }}</h4>
+        								<p>Total Projects</p>
+        							</div>
+        						</div>
+        						<div class="col-md-4">
+        							<div class="wel_item">
+        								<i class="lnr lnr-users"></i>
+        								<h4>{{ about.customer_count }}</h4>
+        								<p>Total Volunteers</p>
+        							</div>
+        						</div>
+        					</div>
+        				</div>
+        			</div>
+        			<div class="col-lg-6">
+        				<div class="tools_expert">
+        					<h3>Tools Expertness</h3>
+        					<div class="skill_main">
+                                {% for skill in skills %}
+								<div class="skill_item">
+									<h4>{{ skill.name }} <span class="counter">{{ skill.percentage }}</span>%</h4>
+									<div class="progress">
+										<div class="progress-bar" role="progressbar" aria-valuenow="{{ skill.percentage }}" aria-valuemin="0" aria-valuemax="100"></div>
+									</div>
+								</div>
+                                {% endfor %}
+							</div>
+        				</div>
+        			</div>
+        		</div>
+        	</div>
+        </section>
+        <!--================End Welcome Area =================-->
+        
+        <!--================Feature Area =================-->
+        <section class="feature_area p_120">
+        	<div class="container">
+        		<div class="main_title">
+        			<h2>offerings to my clients</h2>
+        			<p>In this page you can see my offers, if you have any question you can contact to me thank you</p>
+        		</div>
+        		<div class="feature_inner row">
+                    {% for offer in servies %}
+        			<div class="col-lg-4 col-md-6">
+        				<div class="feature_item">
+        					<i class="{{ offer.icon }}", aria-hidden="true" ></i>
+        					<h4>{{ offer.name }}</h4>
+        					<p>{{ offer.discription }}</p>
+        				</div>
+        			</div>
+                    {% endfor %}
+        		</div>
+        	</div>
+        </section>
+        <!--================End Feature Area =================-->
+        
+        <!--================Projects Area =================-->
+        <section class="projects_area p_120">
+        	<div class="container">
+        		<div class="main_title">
+					<h2>Projects list that I worked on</h2>
+					<p> You can see my work which i done </p>
+				</div>
+        		<div class="projects_fillter">
+					<ul class="filter list">
+						<li class="active" data-filter="*"><a href="#">All Categories</a></li>
+						
+						{% for categorys in catigory %}
+						<li data-filter=".{{ categorys.id }}"><a href="#">{{ categorys.name }}</a></li>
+						{% endfor %}
+					</ul>
+				</div>
+				<div class="projects_inner row">
+
+					{% for portflio in project %}
+					<div class="col-lg-4 col-sm-6 brand {{ portflio.Catigory_id.id }}">
+						<div class="projects_item">
+							<img class="img-fluid" src="{{ portflio.poster.url }}" alt="">
+							<div class="projects_text">
+								<a href="{% url 'project_detail' portflio.id  %}"><h4>{{ portflio.name }} {{ portflio.Catigory_id.id }}</h4></a>
+								<p>{{ portflio.description }}</p>
+							</div>
+						</div>
+					</div>
+					{% endfor %}
+					
+				</div>
+        	</div>
+        </section>
+        <!--================End Projects Area =================-->
+        
+
+        <!--================Latest Blog Area =================-->
+        <section class="latest_blog_area p_120">
+        	<div class="container">
+        		<div class="main_title">
+        			<h2>Latest Posts from Blog</h2>
+					<p> In this page you can see my blogs which i posted , watch  </p>
+        		</div>
+        		<div class="row latest_blog_inner">
+                    {% for blogs in blog %}
+        			<div class="col-lg-4">
+        				<div class="l_blog_item">
+        					<div class="l_blog_img">
+        						<img style="width: 360px; height: 300px" class="img-fluid" src="{{ blogs.poster.url }}" alt="">
+        					</div>
+        					<div class="l_blog_text">
+        						<div class="date">
+        							<a href="#">{{ blogs.punlished_at }}  |  By {{ blogs.author }} {{  blogs.view }}</a>
+									<a href="#">View</a>
+									<!-- <a href="#">{{ blog.author }}</a> -->
+        						</div>
+        						<a href="{% url 'blog'  blogs.id %}"><h4>{{ blogs.title }}</h4></a>
+        						<p>{{ blogs.dicription|slice:100 }}</p>
+        					</div>
+        				</div>
+        			</div>
+                    {% endfor %}
+        		</div>
+        	</div>
+        </section>
+        <!--================End Latest Blog Area =================-->
+
+<!-- Rest of your HTML content -->
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const toggleBtn = document.getElementById('mode-toggle-btn');
+    const body = document.body;
+
+    // Add event listener to the toggle button
+    toggleBtn.addEventListener('click', function() {
+        // Toggle the 'dark-mode' class on the body
+        body.classList.toggle('dark-mode');
+
+        // Store the user's preference in local storage
+        const isDarkMode = body.classList.contains('dark-mode');
+        localStorage.setItem('darkMode', isDarkMode);
+    });
+
+    // Check if user has previously set dark mode preference
+    const isDarkMode = localStorage.getItem('darkMode') === 'true';
+    if (isDarkMode) {
+        body.classList.add('dark-mode');
+    }
+});
+</script>
+
+
+<style>
+	/* Define styles for dark mode */
+	.dark-mode {
+		background-color: #1a1a1a; /* Dark background color */
+		color: #ffffff; /* Light text color */
+	}
+	
+	/* Target all text elements within dark mode */
+	.dark-mode * {
+		color: #ffffff; /* Light text color */
+	}
+	
+	/* Add more specific styles for dark mode as needed */
+	.dark-mode .banner_content h5 {
+		color: #ffffff; /* Example: Make heading text white in dark mode */
+	}
+	
+	/* Add more styles for other elements as needed */
+	</style>
+	
+<style>
+	/* Toggle button styles */
+	#mode-toggle-btn {
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		padding: 8px 16px; /* Adjust padding to make it smaller */
+		border: none;
+		border-radius: 5px;
+		background-color: #4CAF50; /* Green background color */
+		color: #fff; /* White text color */
+		font-size: 14px; /* Adjust font size to make it smaller */
+		cursor: pointer;
+		transition: background-color 0.3s ease;
+	}
+	
+	/* Hover effect for the button */
+	#mode-toggle-btn:hover {
+		background-color: #45a049; /* Darker green on hover */
+	}
+	
+	/* Dark mode styles for the button */
+	.dark-mode #mode-toggle-btn {
+		background-color: #333; /* Dark background color */
+		color: #fff; /* Light text color */
+	}
+	
+	/* Dark mode hover effect */
+	.dark-mode #mode-toggle-btn:hover {
+		background-color: #555; /* Darker color on hover */
+	}
+	</style>
+	
+	<!-- Assuming you have a header element with class "header" -->
+
+	
+{% endblock %}
