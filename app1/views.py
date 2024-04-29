@@ -12,6 +12,16 @@ def home(request):
     catigory = Catigory.objects.all()
     project = Project.objects.all()
     blog = Blog.objects.all()
+
+    P = Paginator(blog, 6)
+    page_number = request.GET.get('page')
+    try:
+        page_object = P.get_page(page_number)
+    except PageNotAnInteger :
+        page_object = P.page(1)
+    except EmptyPage:
+        page_object = P.page(P.num_pages)
+
     return render(request, 'index.html',
                    {'profile': profile, 
                     'skills': skils, 
@@ -19,7 +29,7 @@ def home(request):
                     'servies': servies,
                     'project':project, 
                     'catigory':catigory, 
-                    'blog':blog }
+                    'blog':page_object }
 
                    )
 
@@ -58,6 +68,7 @@ def Posrtfolio(request):
 
 def BlogPath(request):
     blog = Blog.objects.all() 
+    profile = Profile.objects.last()
     blogs = Blog.objects.order_by('-view')
 
     if request.method == 'POST':
@@ -90,6 +101,6 @@ def BlogPath(request):
         page_object = P.page(P.num_pages) 
 
 
-    return render(request, 'blog.html', { 'blog': page_object , 'blogs': page_objects} )
+    return render(request, 'blog.html', { 'blog': page_object , 'blogs': page_objects, 'profile': profile} )
 
 

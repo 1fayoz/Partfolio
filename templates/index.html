@@ -16,7 +16,7 @@
 						</div>
 						<div class="col-lg-6">
 							<div class="banner_content">
-								<h5>This is me</h5>
+								<h5>Bu Men</h5>
 								<h2>{{ profile.full_name }}</h2>
                                 <p>{{ profile.bio }}</p>
                                 <ul class="list d-flex pb-2">
@@ -24,7 +24,7 @@
                                     <li class="pr-4"><a target="_blank" href="{{ link.url }}"><i class="{{ link.icon }}"></i></a></li>
                                     {% endfor %}
         					    </ul>
-								<a class="banner_btn" href="{{ profile.link }}">Contact with me</a>
+								<a class="banner_btn" href="{{ profile.link }}">Men Bilan Bog'lanish</a>
 							</div>
 						</div>
 					</div>
@@ -39,28 +39,28 @@
         		<div class="row welcome_inner">
         			<div class="col-lg-6">
         				<div class="welcome_text">
-        					<h4>About Myself</h4>
+        					<h4>Men Haqimda</h4>
         					<p> {{ about.body }} </p>
         					<div class="row">
         						<div class="col-md-4">
         							<div class="wel_item">
         								<i class="lnr lnr-database"></i>
         								<h4>{{ about.amount }}</h4>
-        								<p> Salary </p>
+        								<p>Oylik</p>
         							</div>
         						</div>
         						<div class="col-md-4">
         							<div class="wel_item">
         								<i class="lnr lnr-book"></i>
         								<h4>{{ about.project_count }}</h4>
-        								<p>Total Projects</p>
+        								<p>Hamma Proektlar</p>
         							</div>
         						</div>
         						<div class="col-md-4">
         							<div class="wel_item">
         								<i class="lnr lnr-users"></i>
         								<h4>{{ about.customer_count }}</h4>
-        								<p>Total Volunteers</p>
+        								<p>Hamma Haridorlar</p>
         							</div>
         						</div>
         					</div>
@@ -68,7 +68,7 @@
         			</div>
         			<div class="col-lg-6">
         				<div class="tools_expert">
-        					<h3>Tools Expertness</h3>
+        					<h3>Texnalogiyalar</h3>
         					<div class="skill_main">
                                 {% for skill in skills %}
 								<div class="skill_item">
@@ -90,8 +90,8 @@
         <section class="feature_area p_120">
         	<div class="container">
         		<div class="main_title">
-        			<h2>offerings to my clients</h2>
-        			<p>In this page you can see my offers, if you have any question you can contact to me thank you</p>
+        			<h2>Mijozlarga takliflarim</h2>
+        			<p>Men tomonimdan sizlarga beriladigon hamma takliflarim, agar maqul kelsa men bilan bog'laning </p>
         		</div>
         		<div class="feature_inner row">
                     {% for offer in servies %}
@@ -112,12 +112,12 @@
         <section class="projects_area p_120">
         	<div class="container">
         		<div class="main_title">
-					<h2>Projects list that I worked on</h2>
-					<p> You can see my work which i done </p>
+					<h2>Men qilgan ishlar</h2>
+					<p> Men yasagan sayt Telagram bot , ishlagan joylarim haqida va boshqa men qigan ishlarni shu yerda ko'rishingiz mumkin </p>
 				</div>
         		<div class="projects_fillter">
 					<ul class="filter list">
-						<li class="active" data-filter="*"><a href="#">All Categories</a></li>
+						<li class="active" data-filter="*"><a href="#">Hamma bo'limlar</a></li>
 						
 						{% for categorys in catigory %}
 						<li data-filter=".{{ categorys.id }}"><a href="#">{{ categorys.name }}</a></li>
@@ -148,8 +148,8 @@
         <section class="latest_blog_area p_120">
         	<div class="container">
         		<div class="main_title">
-        			<h2>Latest Posts from Blog</h2>
-					<p> In this page you can see my blogs which i posted , watch  </p>
+        			<h2> Mening shahsiy blogim </h2>
+					<p> Bu sahifada meni ish jaryonlarim unutilmas voqealarimdan parchalar joylab boraman  </p>
         		</div>
         		<div class="row latest_blog_inner">
                     {% for blogs in blog %}
@@ -169,7 +169,36 @@
         					</div>
         				</div>
         			</div>
-                    {% endfor %}
+					{% endfor %}
+                             <!-- <h4 style="text-align: center">Hech nima topilmadi</h4> -->
+                            
+                            {% if blog.has_other_pages %}
+                            <nav class="blog-pagination justify-content-center d-flex">
+		                        <ul class="pagination">
+                                    {% if blog.has_previous %}
+		                            <li class="page-item">
+		                                <a href="?page={{ blog.previous_page_number }}" class="page-link" aria-label="Previous">
+		                                    <span aria-hidden="true">
+		                                        <span class="lnr lnr-chevron-left"></span>
+		                                    </span>
+		                                </a>
+		                            </li>
+		                            <li class="page-item"><a href="?page={{ blog.previous_page_number }}" class="page-link">{{ blog.previous_page_number }}</a></li>
+                                    {% endif %}
+		                            <li style="background-color: #8490ff;" class="page-item"><a style="color:#fff;" href="?page={{ blog.number }}" class="page-link">{{ blog.number }}</a></li>
+                                    {% if blog.has_next %}
+		                            <li class="page-item"><a href="?page={{ blog.next_page_number }}" class="page-link">{{ blog.next_page_number }}</a></li>
+		                            <li class="page-item">
+		                                <a href="?page={{ blog.next_page_number }}" class="page-link" aria-label="Next">
+		                                    <span aria-hidden="true">
+		                                        <span class="lnr lnr-chevron-right"></span>
+		                                    </span>
+		                                </a>
+		                            </li>
+                                    {% endif %}
+		                        </ul>
+		                    </nav>
+                            {% endif %}
         		</div>
         	</div>
         </section>

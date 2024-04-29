@@ -7,10 +7,10 @@
         <!--================Home Banner Area =================-->
         <section class="home_banner_area blog_banner">
             <div class="banner_inner d-flex align-items-center">
-            	<div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
+            	<div class="overlay bg-parallax"  data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background=""></div>
 				<div class="container">
 					<div class="blog_b_text text-center">
-						<h2>Welcome to my  <br /> Blog 🙂</h2>
+						<h2> Xush Kelibsiz mening   <br /> Bloginga  🙂</h2>
 					</div>
 				</div>
             </div>
@@ -33,7 +33,7 @@
                                         <ul class="blog_meta list">
                                             <li><a href="/">{{ post.author }}<i class="lnr lnr-user"></i></a></li>
                                             <li><a href="/">{{ post.punlished_at | date:"M d, Y" }}<i class="lnr lnr-calendar-full"></i></a></li>
-                                            <li> View <a href="/">{{ post.view }}</a></li>
+                                            <li> Ko'roshlar <a href="/">{{ post.view }}</a></li>
                                         </ul>
                                     </div>
                                </div>
@@ -43,13 +43,13 @@
                                         <div class="blog_details">
                                             <a href="  "><h2>{{ post.title }}</h2></a>
                                             <p>{{ post.dicription | slice:80 }}</p>
-                                            <a href="{% url 'blog' post.id %}" class="blog_btn">View More</a>
+                                            <a href="{% url 'blog' post.id %}" class="blog_btn">batafsil</a>
                                         </div>
                                     </div>
                                 </div>
                             </article>
                             {% empty %}
-                             <h4 style="text-align: center">nothing found</h4>
+                             <h4 style="text-align: center">Hech nima topilmadi</h4>
                             {% endfor %}
                             {% if blog.has_other_pages %}
                             <nav class="blog-pagination justify-content-center d-flex">
@@ -86,9 +86,9 @@
                                 <form action="" method="post">
                                 {% csrf_token %}
                                 <div class="input-group">
-                                        <input name="search" type="text" class="form-control" placeholder="Search Posts">
+                                        <input name="search" type="text" class="form-control" placeholder="Qidiruv">
                                         <span class="input-group-btn">
-                                            <button class="btn btn-default" type="submit"><i class="lnr lnr-magnifier"></i></button>
+                                            <button class="btn btn-default" type="Qidiruv"><i class="lnr lnr-magnifier"></i></button>
                                         </span>
 
                                 </div><!-- /input-group -->
@@ -96,7 +96,7 @@
                                 <div class="br"></div>
                             </aside>
                             <aside class="single_sidebar_widget author_widget">
-                                <img style="width: 120px; height: 120px" class="author_img rounded-circle" src="{{ profile_data.secondary_image.url }}" alt="">
+                                <img style="width: 120px; height: 120px" class="author_img rounded-circle" src="{{ profile.image.url }}" alt="">
                                 <h4>To'raqulov Fayoz</h4>
                                 <div class="social_icon">
                                     {% for link in links %}
@@ -107,7 +107,7 @@
                                 <div class="br"></div>
                             </aside>
                             <aside class="single_sidebar_widget popular_post_widget">
-                                <h3 class="widget_title">Popular Posts</h3>
+                                <h3 class="widget_title">Mashhur Postlar</h3>
                                 {% for most_watched_post in blogs %}
                                 <div class="media post_item">
                                     <a href="{{ most_watched_post.get_absolute_url }}"><img style="width: 100px; height: 85px" src="{{ most_watched_post.poster.url }}" alt="post"></a>
@@ -120,11 +120,11 @@
                                 <div class="br"></div>
                             </aside>
                             <aside class="single-sidebar-widget newsletter_widget">
-                                <h4 class="widget_title">Newsletter</h4>
-                                <p>
+                                <!-- <h4 class="widget_title">Newsletter</h4> -->
+                                <!-- <p>
                                 Here, I focus on a range of items and features that we use in life without
                                 giving them a second thought.
-                                </p>
+                                </p> -->
                                 <div class="br"></div>
                             </aside>
                         </div>
@@ -133,83 +133,7 @@
             </div>
         </section>
         <!--================Blog Area =================-->
-        <script>
-            document.addEventListener('DOMContentLoaded', function() {
-                const toggleBtn = document.getElementById('mode-toggle-btn');
-                const body = document.body;
-            
-                // Add event listener to the toggle button
-                toggleBtn.addEventListener('click', function() {
-                    // Toggle the 'dark-mode' class on the body
-                    body.classList.toggle('dark-mode');
-            
-                    // Store the user's preference in local storage
-                    const isDarkMode = body.classList.contains('dark-mode');
-                    localStorage.setItem('darkMode', isDarkMode);
-                });
-            
-                // Check if user has previously set dark mode preference
-                const isDarkMode = localStorage.getItem('darkMode') === 'true';
-                if (isDarkMode) {
-                    body.classList.add('dark-mode');
-                }
-            });
-            </script>
-            
-            
-            <style>
-                /* Define styles for dark mode */
-                .dark-mode {
-                    background-color: #1a1a1a; /* Dark background color */
-                    color: #ffffff; /* Light text color */
-                }
-                
-                /* Target all text elements within dark mode */
-                .dark-mode * {
-                    color: #ffffff; /* Light text color */
-                }
-                
-                /* Add more specific styles for dark mode as needed */
-                .dark-mode .banner_content h5 {
-                    color: #ffffff; /* Example: Make heading text white in dark mode */
-                }
-                
-                /* Add more styles for other elements as needed */
-                </style>
-                
-            <style>
-                /* Toggle button styles */
-                #mode-toggle-btn {
-                    position: absolute;
-                    top: 50%;
-                    left: 50%;
-                    transform: translate(-50%, -50%);
-                    padding: 8px 16px; /* Adjust padding to make it smaller */
-                    border: none;
-                    border-radius: 5px;
-                    background-color: #4CAF50; /* Green background color */
-                    color: #fff; /* White text color */
-                    font-size: 14px; /* Adjust font size to make it smaller */
-                    cursor: pointer;
-                    transition: background-color 0.3s ease;
-                }
-                
-                /* Hover effect for the button */
-                #mode-toggle-btn:hover {
-                    background-color: #45a049; /* Darker green on hover */
-                }
-                
-                /* Dark mode styles for the button */
-                .dark-mode #mode-toggle-btn {
-                    background-color: #333; /* Dark background color */
-                    color: #fff; /* Light text color */
-                }
-                
-                /* Dark mode hover effect */
-                .dark-mode #mode-toggle-btn:hover {
-                    background-color: #555; /* Darker color on hover */
-                }
-                </style>
+       
                 
               
                 

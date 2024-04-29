@@ -12,7 +12,7 @@
 					<div class="banner_content text-center">
 						<h2>Portfolio</h2>
 						<div class="page_link">
-							<a href="index.html">Home</a>
+							<a href="index.html">Bosh sahifa</a>
 							<a href="portfolio.html">Portfolio</a>
 						</div>
 						
@@ -26,11 +26,12 @@
         <section class="projects_area p_120">
         	<div class="container">
         		<div class="main_title">
-					<h2>Projects list that I worked on</h2>
+					<h2>Men qilgan ishlar</h2>
+					<p> Men yasagan sayt Telagram bot , ishlagan joylarim haqida va boshqa men qigan ishlarni shu yerda ko'rishingiz mumkin</p>
 				</div>
         		<div class="projects_fillter">
 					<ul class="filter list">
-						<li class="active" data-filter="*"><a href="#">All Categories</a></li>
+						<li class="active" data-filter="*"><a href="#">Hamma bo'limlar</a></li>
                         {% for cat in catigory %}
 						<li data-filter=".{{ cat.id }}"><a href="#">{{ cat.name }}</a></li>
                         {% endfor %}
@@ -51,85 +52,5 @@
         	</div>
         </section>
         <!--================End Projects Area =================-->
-        <script>
-			document.addEventListener('DOMContentLoaded', function() {
-				const toggleBtn = document.getElementById('mode-toggle-btn');
-				const body = document.body;
-			
-				// Add event listener to the toggle button
-				toggleBtn.addEventListener('click', function() {
-					// Toggle the 'dark-mode' class on the body
-					body.classList.toggle('dark-mode');
-			
-					// Store the user's preference in local storage
-					const isDarkMode = body.classList.contains('dark-mode');
-					localStorage.setItem('darkMode', isDarkMode);
-				});
-			
-				// Check if user has previously set dark mode preference
-				const isDarkMode = localStorage.getItem('darkMode') === 'true';
-				if (isDarkMode) {
-					body.classList.add('dark-mode');
-				}
-			});
-			</script>
-			
-			
-			<style>
-				/* Define styles for dark mode */
-				.dark-mode {
-					background-color: #1a1a1a; /* Dark background color */
-					color: #ffffff; /* Light text color */
-				}
-				
-				/* Target all text elements within dark mode */
-				.dark-mode * {
-					color: #ffffff; /* Light text color */
-				}
-				
-				/* Add more specific styles for dark mode as needed */
-				.dark-mode .banner_content h5 {
-					color: #ffffff; /* Example: Make heading text white in dark mode */
-				}
-				
-				/* Add more styles for other elements as needed */
-				</style>
-				
-			<style>
-				/* Toggle button styles */
-				#mode-toggle-btn {
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
-					padding: 8px 16px; /* Adjust padding to make it smaller */
-					border: none;
-					border-radius: 5px;
-					background-color: #4CAF50; /* Green background color */
-					color: #fff; /* White text color */
-					font-size: 14px; /* Adjust font size to make it smaller */
-					cursor: pointer;
-					transition: background-color 0.3s ease;
-				}
-				
-				/* Hover effect for the button */
-				#mode-toggle-btn:hover {
-					background-color: #45a049; /* Darker green on hover */
-				}
-				
-				/* Dark mode styles for the button */
-				.dark-mode #mode-toggle-btn {
-					background-color: #333; /* Dark background color */
-					color: #fff; /* Light text color */
-				}
-				
-				/* Dark mode hover effect */
-				.dark-mode #mode-toggle-btn:hover {
-					background-color: #555; /* Darker color on hover */
-				}
-				</style>
-				
-			
-				
-
+       
 {% endblock %}
